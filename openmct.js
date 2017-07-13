@@ -51,6 +51,7 @@ requirejs.config({
         "d3-time-format": "node_modules/d3-time-format/build/d3-time-format.min",
         "es6": "node_modules/requirejs-babel-plugin/es6",
         "babel": "node_modules/babel-standalone/babel",
+        "es6-jsx": "node_modules/requirejs-babel-plugin/es6-jsx"
     },
     map: {
         "*": {

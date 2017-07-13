@@ -1,10 +1,15 @@
 import etch from 'etch';
 
-import ListItemView from 'es6!./list-item-view';
+import LADTableItem from 'es6!./lad-table-item';
 
-class ListView {
+class LADTable {
     constructor (properties, children) {
         this.props = properties;
+        this.props.headers = this.props.headers || [
+            'Name',
+            'Timestamp',
+            'Value'
+        ];
         this.props.children = this.props.children || [];
         this.composition = this.props
             .openmct
@@ -16,12 +21,17 @@ class ListView {
         this.composition.load();
     }
     render () {
-        return etch.dom('div', {},
-            etch.dom('h1', null, `Viewing: ${this.props.domainObject.name}`),
-            etch.dom('ul', null,
-                this.props.children.map((c) => etch.dom(ListItemView, {
+        return etch.dom('table', {},
+            etch.dom('thead', null,
+                etch.dom('tr', null,
+                     this.props.headers.map((h) => etch.dom('th', null, h))
+                )
+            ),
+            etch.dom('tbody', null,
+                this.props.children.map((c) => etch.dom(LADTableItem, {
                     domainObject: c,
                     key: c.identifier,
+                    headers: this.props.headers,
                     openmct: this.props.openmct
                 }))
             )
@@ -50,4 +60,4 @@ class ListView {
     }
 }
 
-export default ListView
+export default LADTable
