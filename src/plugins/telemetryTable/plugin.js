@@ -6,8 +6,9 @@ module.exports = function TelemetryTablePlugin() {
 
         openmct.types.addType('view.latest-value-table', {
             name: 'Latest Value Table',
+            description: 'A table that shows the latest values of all telemetry points contained within.',
             key: 'view.latest-value-table',
-            cssClass: '',
+            cssClass: 'icon-tabular-lad',
             creatable: true,
             initialize: function (obj) {
                 obj.composition = [];
@@ -15,7 +16,8 @@ module.exports = function TelemetryTablePlugin() {
         });
 
         openmct.objectViews.addProvider({
-            name: 'my view',
+            name: 'Latest Value Table',
+            cssClass: 'icon-tabular-lad',
             canView: function (d) {
                 return d.type === 'view.latest-value-table' && 150;
             },
